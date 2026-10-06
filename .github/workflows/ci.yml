@@ -1,0 +1,17 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4      # tải code về máy ảo của GitHub
+      - uses: actions/setup-node@v4    # cài Node
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci                    # cài thư viện theo đúng package-lock.json
+      - run: npm test                  # chạy test
